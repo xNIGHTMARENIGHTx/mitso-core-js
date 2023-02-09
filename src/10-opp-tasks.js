@@ -24,34 +24,38 @@
 class PaginationHelper {
   // The constructor takes in an array of items and a integer indicating how many
   // items fit within a single page
-  constructor(/* collection, itemsPerPage */) {
-    throw new Error('Not implemented');
+  constructor(collection, itemsPerPage) {
+    this.collection = collection;
+    this.itemsPerPage = itemsPerPage;
   }
 
   // returns the number of items within the entire collection
   itemCount() {
-    console.log(this);
-    throw new Error('Not implemented');
+    return this.collection.length;
   }
 
   // returns the number of pages
   pageCount() {
-    console.log(this);
-    throw new Error('Not implemented');
+    return Math.ceil(this.collection.length / this.itemsPerPage);
   }
 
   // returns the number of items on the current page. page_index is zero based.
   // this method should return -1 for pageIndex values that are out of range
-  pageItemCount() {
-    console.log(this);
-    throw new Error('Not implemented');
+  pageItemCount(pageIndex) {
+    if (pageIndex + 1 === this.pageCount()) {
+      return this.itemCount() % this.itemsPerPage;
+    }
+    if (pageIndex + 1 < this.pageCount()) {
+      return this.itemsPerPage;
+    }
+    return -1;
   }
 
   // determines what page an item is on. Zero based indexes
   // this method should return -1 for itemIndex values that are out of range
-  pageIndex() {
-    console.log(this);
-    throw new Error('Not implemented');
+  pageIndex(itemIndex) {
+    const id = Math.floor(itemIndex / this.itemsPerPage);
+    return id < this.pageCount() && id >= 0 ? id : -1;
   }
 }
 
