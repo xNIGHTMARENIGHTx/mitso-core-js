@@ -121,7 +121,7 @@ function fromJSON(proto, json) {
 
 const cssSelectorBuilder = {
   element(/* value */) {
-    throw new Error('Not implemented');
+    throw new Error('Not implementead');
   },
 
   id(/* value */) {
